@@ -7,6 +7,7 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Input;
+using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Threading;
@@ -704,7 +705,13 @@ namespace MahApps.Metro.SimpleChildWindow
                     DependencyPropertyChangedEventHandler eh = null;
                     eh = (sender, args) => {
                         elementToFocus.IsVisibleChanged -= eh;
-                        elementToFocus.Focus();
+                        if (elementToFocus.Focusable)
+                        {
+                            if (elementToFocus is HwndHost == false)
+                            {
+                                elementToFocus.Focus();
+                            }
+                        }
                     };
                     elementToFocus.IsVisibleChanged += eh;
                 }
@@ -1044,8 +1051,9 @@ namespace MahApps.Metro.SimpleChildWindow
             var width = this.partOverlay.RenderSize.Width;
             var height = this.partOverlay.RenderSize.Height;
 
-            var widthOffset = width / 2 - this.partWindow.RenderSize.Width / 2;
-            var heightOffset = height / 2 - this.partWindow.RenderSize.Height / 2;
+            var offset = VisualTreeHelper.GetOffset(this.partWindow);
+            var widthOffset = offset.X;
+            var heightOffset = offset.Y;
 
             var realX = this.moveTransform.X + x + widthOffset;
             var realY = this.moveTransform.Y + y + heightOffset;
