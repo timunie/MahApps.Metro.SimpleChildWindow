@@ -39,6 +39,13 @@
                     Content="moving time"
                     FontSize="36"
                     FontWeight="Thin" />
+            
+            <Button Margin="20"
+                    VerticalAlignment="Top"
+                    Click="ValidationExample_OnClick"
+                    Content="Validation"
+                    FontSize="36"
+                    FontWeight="Thin" />
         </StackPanel>
 
         <simpleChildWindow:ChildWindow x:Name="child01"

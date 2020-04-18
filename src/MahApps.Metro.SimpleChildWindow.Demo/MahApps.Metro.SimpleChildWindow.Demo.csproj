@@ -40,6 +40,9 @@
         <AutoGen>True</AutoGen>
         <DependentUpon>Settings.settings</DependentUpon>
       </Compile>
+      <Compile Update="ValidationExample.xaml.cs">
+        <DependentUpon>ValidationExample.xaml</DependentUpon>
+      </Compile>
     </ItemGroup>
     <ItemGroup>
       <None Update="Properties\Settings.settings">

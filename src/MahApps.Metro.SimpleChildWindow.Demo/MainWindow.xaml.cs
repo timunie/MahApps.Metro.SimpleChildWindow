@@ -60,5 +60,13 @@ namespace MahApps.Metro.SimpleChildWindow.Demo
 
             Settings.Default.Save();
         }
-	}
+
+        private async void ValidationExample_OnClick(object sender, RoutedEventArgs e)
+        {
+            var childWindow = new ValidationExample() { IsModal = true, AllowMove = true, VerticalContentAlignment = VerticalAlignment.Center, HorizontalContentAlignment = HorizontalAlignment.Center, DataContext = new Model.ValidationExample() };
+            var result = await this.ShowChildWindowAsync<CloseReason>(childWindow, ChildWindowManager.OverlayFillBehavior.FullWindow);
+
+            Settings.Default.Save();
+        }
+    }
 }
